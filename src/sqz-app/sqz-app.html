@@ -3,6 +3,12 @@
 <link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
 
 
+<firebase-app
+    auth-domain="sqzp-9f3fb.firebaseapp.com"
+    database-url="https://sqzp-9f3fb.firebaseio.com/"
+    api-key="AIzaSyAH1iRHxT1IQ9NttW5mVC8izZ9X6le8Jgo">
+</firebase-app>
+
 <dom-module id="sqz-app">
   <template>
     <style>
@@ -13,12 +19,6 @@
         height: 64px;
       }
     </style>
-
-    <firebase-app
-        auth-domain="sqzp-9f3fb.firebaseapp.com"
-        database-url="https://sqzp-9f3fb.firebaseio.com/"
-        api-key="AIzaSyAH1iRHxT1IQ9NttW5mVC8izZ9X6le8Jgo">
-    </firebase-app>
 
     <firebase-query
         path="/s"
