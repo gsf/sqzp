@@ -3,12 +3,6 @@
 <link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
 
 
-<firebase-app
-    auth-domain="sqzp-9f3fb.firebaseapp.com"
-    database-url="https://sqzp-9f3fb.firebaseio.com/"
-    api-key="AIzaSyAH1iRHxT1IQ9NttW5mVC8izZ9X6le8Jgo">
-</firebase-app>
-
 <dom-module id="sqz-app">
   <template>
     <style>
@@ -23,14 +17,22 @@
       }
     </style>
 
-    <firebase-document
-        path="/s/s00"
-        data="{{sq}}">
-    </firebase-document>
+    <firebase-app
+        auth-domain="sqzp-9f3fb.firebaseapp.com"
+        database-url="https://sqzp-9f3fb.firebaseio.com/"
+        api-key="AIzaSyAH1iRHxT1IQ9NttW5mVC8izZ9X6le8Jgo">
+    </firebase-app>
+
+    <firebase-query
+        path="/s"
+        data="{{data}}">
+    </firebase-query>
 
     <h2>0</h2>
 
-    <paper-button raised toggles active="{{sq.active}}" id="s00"></paper-button>
+    <template is="dom-repeat" items="{{data}}">
+      <paper-button raised toggles active="{{item.color}}"></paper-button>
+    </template>
   </template>
 
   <script>
@@ -39,8 +41,7 @@
       is: 'sqz-app',
 
       properties: {
-        uid: String,
-        sq: {
+        data: {
           type: Object,
           observer: 'dataChanged'
         },

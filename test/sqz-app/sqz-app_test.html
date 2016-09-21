@@ -14,24 +14,21 @@
 
     <test-fixture id="basic">
       <template>
-        <sqz-app>
-        </sqz-app>
+        <sqz-app></sqz-app>
       </template>
     </test-fixture>
 
     <script>
       suite('sqz-app', function() {
+        var element = fixture('basic');
 
         test('instantiating the element works', function() {
-          var element = fixture('basic');
           assert.equal(element.is, 'sqz-app');
         });
 
-        test('marking s00 active changes data', function () {
-          var element = fixture('basic');
-          assert.equal(element.sq.active, undefined);
-          element.$.s00.active = true;
-          assert.equal(element.sq.active, true);
+       // test is failing. No connection to firebase?
+        test('data contains 8 items', function () {
+          assert.equal(element.data.length, 8);
         });
 
       });
