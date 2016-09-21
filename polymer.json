@@ -1,0 +1,12 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/sqz-app/sqz-app.html",
+  "sourceGlobs": [
+   "src/**/*",
+   "bower.json"
+  ],
+  "includeDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+  ]
+}

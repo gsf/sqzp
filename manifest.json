@@ -1,0 +1,7 @@
+{
+  "name": "sqz",
+  "short_name": "sqz",
+  "description": "squarez",
+  "start_url": "/",
+  "display": "standalone"
+}

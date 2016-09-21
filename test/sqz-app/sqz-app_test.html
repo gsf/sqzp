@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>sqz-app test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../../src/sqz-app/sqz-app.html">
+  </head>
+  <body>
+
+    <test-fixture id="basic">
+      <template>
+        <sqz-app>
+        </sqz-app>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('sqz-app', function() {
+
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'sqz-app');
+        });
+
+        test('marking s00 active changes data', function () {
+          var element = fixture('basic');
+          assert.equal(element.sq.active, undefined);
+          element.$.s00.active = true;
+          assert.equal(element.sq.active, true);
+        });
+
+      });
+    </script>
+  </body>
+</html>

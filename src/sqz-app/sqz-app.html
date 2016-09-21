@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/polymerfire/polymerfire.html">
+
+
+<firebase-app
+    auth-domain="sqzp-9f3fb.firebaseapp.com"
+    database-url="https://sqzp-9f3fb.firebaseio.com/"
+    api-key="AIzaSyAH1iRHxT1IQ9NttW5mVC8izZ9X6le8Jgo">
+</firebase-app>
+
+<dom-module id="sqz-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-button {
+        height: 64px;
+      }
+      paper-button[active] {
+        background-color: black;
+      }
+    </style>
+
+    <firebase-document
+        path="/s/s00"
+        data="{{sq}}">
+    </firebase-document>
+
+    <h2>0</h2>
+
+    <paper-button raised toggles active="{{sq.active}}" id="s00"></paper-button>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'sqz-app',
+
+      properties: {
+        uid: String,
+        sq: {
+          type: Object,
+          observer: 'dataChanged'
+        },
+      },
+
+      dataChanged: function(newData, oldData) {
+        console.log("data changed:", newData, oldData);
+      },
+
+      markSquare: function (e) {
+        var el = e.target;
+      },
+    });
+  </script>
+</dom-module>
