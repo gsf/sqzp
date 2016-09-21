@@ -87,7 +87,7 @@
 
       resetSqz: function () {
         this.querySelectorAll('paper-button').forEach(function (el) {
-          el.click();
+          el.fire('tap');
         });
       },
 
