@@ -12,9 +12,6 @@
       paper-button {
         height: 64px;
       }
-      paper-button[active] {
-        background-color: black;
-      }
     </style>
 
     <firebase-app
@@ -28,10 +25,16 @@
         data="{{data}}">
     </firebase-query>
 
-    <h2>0</h2>
+    <h1>0</h1>
 
-    <template is="dom-repeat" items="{{data}}">
-      <paper-button raised toggles active="{{item.color}}"></paper-button>
+    <template is="dom-repeat" items="{{data}}" id="repeater">
+      <paper-button
+          raised
+          toggles
+          on-tap="buttonTap"
+          active="{{item.color}}"
+          style="background-color: {{item.color}}">
+      </paper-button>
     </template>
   </template>
 
@@ -41,10 +44,38 @@
       is: 'sqz-app',
 
       properties: {
+        color: {
+          type: String,
+          value: function () {
+            var colors = [
+              '#A33643',
+              '#AA6639',
+              '#246C60',
+              '#448F30',
+            ];
+            return colors[Math.floor(Math.random()*colors.length)];
+          },
+        },
         data: {
           type: Object,
           observer: 'dataChanged'
         },
+      },
+
+      ready: function () {
+        this.$$('h1').style.color = this.color;
+      },
+
+      buttonTap: function (e) {
+        var el = e.target;
+        var model = this.$.repeater.modelForElement(el);
+        if (el.active) {
+          model.set('item.color', this.color);
+          el.style['background-color'] = this.color;
+        } else {
+          model.set('item.color', false);
+          el.style['background-color'] = false;
+        }
       },
 
       dataChanged: function(newData, oldData) {
