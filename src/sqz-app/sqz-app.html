@@ -85,6 +85,12 @@
         this.score += (9 - yours.length);
       },
 
+      resetSqz: function () {
+        this.querySelectorAll('paper-button').forEach(function (el) {
+          el.click();
+        });
+      },
+
       buttonTap: function (e) {
         var el = e.target;
         var model = this.$.repeater.modelForElement(el);
@@ -93,7 +99,7 @@
           el.style['background-color'] = this.color;
           if (this.allColor()) {
             this.moreScore();
-            //this.resetSqz();
+            this.resetSqz();
           }
         } else {
           model.set('item.color', false);
