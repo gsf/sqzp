@@ -25,7 +25,7 @@
         data="{{data}}">
     </firebase-query>
 
-    <h1>0</h1>
+    <h1>[[score]]</h1>
 
     <template is="dom-repeat" items="{{data}}" id="repeater">
       <paper-button
@@ -60,10 +60,29 @@
           type: Object,
           observer: 'dataChanged'
         },
+        score: {
+          type: Number,
+          value: 0,
+        },
       },
 
       ready: function () {
         this.$$('h1').style.color = this.color;
+      },
+
+      allColor: function () {
+        var blanks = this.$.repeater.items.filter(function (item) {
+          return !item.color;
+        });
+        return !blanks.length;
+      },
+
+      moreScore: function () {
+        var yourColor = this.color;
+        var yours = this.$.repeater.items.filter(function (item) {
+          return item.color == yourColor;
+        });
+        this.score += (9 - yours.length);
       },
 
       buttonTap: function (e) {
@@ -72,6 +91,10 @@
         if (el.active) {
           model.set('item.color', this.color);
           el.style['background-color'] = this.color;
+          if (this.allColor()) {
+            this.moreScore();
+            //this.resetSqz();
+          }
         } else {
           model.set('item.color', false);
           el.style['background-color'] = false;
